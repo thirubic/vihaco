@@ -1,0 +1,17 @@
+﻿Build started...
+1>------ Build started: Project: API_TPL, Configuration: Debug Any CPU ------
+1>D:\API\API_TPL\Services\UserService.cs(102,30,102,32): warning CS0168: The variable 'ex' is declared but never used
+1>D:\API\API_TPL\Services\UserService.cs(133,30,133,32): warning CS0168: The variable 'ex' is declared but never used
+1>D:\API\API_TPL\Services\UserService.cs(259,30,259,31): warning CS0168: The variable 'e' is declared but never used
+1>D:\API\API_TPL\Services\UserService.cs(281,30,281,31): warning CS0168: The variable 'e' is declared but never used
+1>D:\API\API_TPL\Controllers\UPLOAD\UploadController.cs(134,25,134,41): warning CS0219: The variable 'MaxContentLength' is assigned but its value is never used
+1>D:\API\API_TPL\Controllers\UPLOAD\UploadController.cs(207,24,207,32): warning CS0219: The variable 'loaifile' is assigned but its value is never used
+1>D:\API\API_TPL\Controllers\UPLOAD\UploadController.cs(350,24,350,32): warning CS0219: The variable 'loaifile' is assigned but its value is never used
+1>D:\API\API_TPL\Controllers\UPLOAD\AmthanhController.cs(29,20,29,22): warning CS0219: The variable 'kq' is assigned but its value is never used
+1>D:\API\API_TPL\Controllers\UPLOAD\AmthanhController.cs(43,20,43,29): warning CS0219: The variable 'query_str' is assigned but its value is never used
+1>D:\API\API_TPL\Controllers\UPLOAD\AmthanhController.cs(152,38,152,39): warning CS0168: The variable 'e' is declared but never used
+1>D:\API\API_TPL\Controllers\UPLOAD\AmthanhController.cs(111,20,111,22): warning CS0219: The variable 'kq' is assigned but its value is never used
+1>D:\API\API_TPL\Controllers\UPLOAD\AmthanhController.cs(125,20,125,29): warning CS0219: The variable 'query_str' is assigned but its value is never used
+1>D:\API\API_TPL\Controllers\Admin\AccountController.cs(30,46,30,59): warning CS1998: This async method lacks 'await' operators and will run synchronously. Consider using the 'await' operator to await non-blocking API calls, or 'await Task.Run(...)' to do CPU-bound work on a background thread.
+1>  API_TPL -> D:\API\API_TPL\bin\API_TPL.dll
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
