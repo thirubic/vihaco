@@ -50,7 +50,7 @@ namespace API_TPL.Controllers.Nghiepvu
         public IHttpActionResult nhapkho_update([FromBody] dynamic obj)
         {
             string query_str = "nhapkho_update";
-
+            //test git
             object[] aParams = new object[7];
             try
             {
