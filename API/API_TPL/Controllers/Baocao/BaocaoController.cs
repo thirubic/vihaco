@@ -17,28 +17,29 @@ using System.Web;
 using System.Text;
 using System.Configuration;
 //using Microsoft.Office.Interop.Excel;
-using OfficeOpenXml;
+//using OfficeOpenXml;
 //using Aspose.Cells;
 
 namespace API_TPL.Controllers.Congviec
 {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api/baocao")]
     public class BaocaoController : ApiController
     {
-        static String connString = ConfigurationManager.ConnectionStrings["PHANBONConnection"].ToString();
+        static String connString = ConfigurationManager.ConnectionStrings["GSkhoConnection"].ToString();
         SQL_DBHELPERs helper = new SQL_DBHELPERs(connString);
 
-        [Route("baocao_thanhpham"), HttpPost]
-        public IHttpActionResult baocao_thanhpham([FromBody] dynamic obj)
+        [Route("Tonkho_denngay"), HttpPost]
+        public IHttpActionResult Tonkho_denngay([FromBody] dynamic obj)
         {
-            string query_str = "baocao_thanhpham";
+            string query_str = "BC_Tonkho_denngay";
 
-            object[] aParams = new object[1];
+            object[] aParams = new object[2];
             try
             {
-                aParams[0] = helper.BuildParameter("ma_xuong", obj.ma_xuong, System.Data.SqlDbType.NVarChar);
-
+                
+                aParams[0] = helper.BuildParameter("Ngay", obj.Ngay, System.Data.SqlDbType.NVarChar);
+                aParams[1] = helper.BuildParameter("MAKHO", obj.MAKHO, System.Data.SqlDbType.NVarChar);
                 System.Data.DataTable kq = helper.ExecuteQueryStoreProcedure(query_str, aParams);
 
                 return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK, kq));
@@ -49,6 +50,28 @@ namespace API_TPL.Controllers.Congviec
             }
         }
 
+        [Route("Xuatnhap_tungaydenngay"), HttpPost]
+        public IHttpActionResult BC_Xuatnhap_tungaydenngay([FromBody] dynamic obj)
+        {
+            string query_str = "BC_Tonkho_denngay";
+
+            object[] aParams = new object[3];
+            try
+            {
+                aParams[0] = helper.BuildParameter("tungay", obj.denngay, System.Data.SqlDbType.NVarChar);
+                aParams[1] = helper.BuildParameter("denngay", obj.denngay, System.Data.SqlDbType.NVarChar);
+                aParams[1] = helper.BuildParameter("makho", obj.makho, System.Data.SqlDbType.NVarChar);
+                System.Data.DataTable kq = helper.ExecuteQueryStoreProcedure(query_str, aParams);
+
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK, kq));
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message));
+            }
+        }
+
+        /*
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("baocao_thanhpham_exp"), HttpGet]
         public IHttpActionResult baocao_thanhpham_exp(string ma_xuong)
@@ -119,8 +142,9 @@ namespace API_TPL.Controllers.Congviec
             {
                 return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message));
             }
-        }
+        } */
     }
+
     public class SubData
     {
         public string MA_DV { get; set; }
