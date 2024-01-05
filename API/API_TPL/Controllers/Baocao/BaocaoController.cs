@@ -60,7 +60,48 @@ namespace API_TPL.Controllers.Congviec
             {
                 aParams[0] = helper.BuildParameter("tungay", obj.denngay, System.Data.SqlDbType.NVarChar);
                 aParams[1] = helper.BuildParameter("denngay", obj.denngay, System.Data.SqlDbType.NVarChar);
-                aParams[1] = helper.BuildParameter("makho", obj.makho, System.Data.SqlDbType.NVarChar);
+                aParams[2] = helper.BuildParameter("makho", obj.makho, System.Data.SqlDbType.NVarChar);
+                System.Data.DataTable kq = helper.ExecuteQueryStoreProcedure(query_str, aParams);
+
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK, kq));
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message));
+            }
+        }
+        [Route("Tonghopgiocongtheothang"), HttpPost]
+        public IHttpActionResult BC_TonghopgiocongcuaNV([FromBody] dynamic obj)
+        {
+            string query_str = "BC_TonghopgiocongcuaNV";
+
+            object[] aParams = new object[3];
+            try
+            {
+                aParams[0] = helper.BuildParameter("IDNHANVIEN", obj.IDNHANVIEN, System.Data.SqlDbType.NVarChar);
+                aParams[1] = helper.BuildParameter("THANG", obj.THANG, System.Data.SqlDbType.NVarChar);
+                aParams[2] = helper.BuildParameter("NAM", obj.NAM, System.Data.SqlDbType.NVarChar);
+                System.Data.DataTable kq = helper.ExecuteQueryStoreProcedure(query_str, aParams);
+
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK, kq));
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message));
+            }
+        }
+
+        [Route("chitietgiocongnhanvien"), HttpPost]
+        public IHttpActionResult BC_ChitietcongtheothangcuaNV([FromBody] dynamic obj)
+        {
+            string query_str = "BC_ChitietcongtheothangcuaNV";
+
+            object[] aParams = new object[2];
+            try
+            {
+
+                aParams[0] = helper.BuildParameter("THANG", obj.THANG, System.Data.SqlDbType.NVarChar);
+                aParams[1] = helper.BuildParameter("NAM", obj.NAM, System.Data.SqlDbType.NVarChar);
                 System.Data.DataTable kq = helper.ExecuteQueryStoreProcedure(query_str, aParams);
 
                 return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK, kq));

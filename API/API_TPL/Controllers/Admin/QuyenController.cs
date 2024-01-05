@@ -21,7 +21,7 @@ namespace HUE_CDC.Controllers.Admin
     [RoutePrefix("api/quyen")]
     public class QuyenController : ApiController
     {
-        static string connString = System.Configuration.ConfigurationManager.ConnectionStrings["QLCV"].ToString();
+        static string connString = System.Configuration.ConfigurationManager.ConnectionStrings["GSkhoConnection"].ToString();
         DBHelper helper = new DBHelper(connString);
 
         /// <summary>
