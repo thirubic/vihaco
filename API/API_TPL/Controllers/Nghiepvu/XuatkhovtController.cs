@@ -21,6 +21,67 @@ namespace API_TPL.Controllers.Nghiepvu
     {
         static String connString = ConfigurationManager.ConnectionStrings["GSkhoConnection"].ToString();
         SQL_DBHELPERs helper = new SQL_DBHELPERs(connString);
+
+
+        [Route("getbyid"), HttpPost]
+        public IHttpActionResult xuatkho_getbyid([FromBody] dynamic obj)
+        {
+            string query_str = "xuatkho_getbyid";
+
+            object[] aParams = new object[1];
+            try
+            {
+                aParams[0] = helper.BuildParameter("IDXUATKHO", obj.IDXUATKHO, System.Data.SqlDbType.NVarChar);
+
+                DataTable kq = helper.ExecuteQueryStoreProcedure(query_str, aParams);
+
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK, kq));
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message));
+            }
+        }
+        [Route("searchbyHoadon"), HttpPost]
+        public IHttpActionResult xuatkho_searchbyHoadon([FromBody] dynamic obj)
+        {
+            string query_str = "xuatkho_searchbyHoadon";
+
+            object[] aParams = new object[1];
+            try
+            {
+                aParams[0] = helper.BuildParameter("SOHOADON", obj.SOHOADON, System.Data.SqlDbType.NVarChar);
+
+                DataTable kq = helper.ExecuteQueryStoreProcedure(query_str, aParams);
+
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK, kq));
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message));
+            }
+        }
+        [Route("searchbydate"), HttpPost]
+        public IHttpActionResult xuatkho_searchbydate([FromBody] dynamic obj)
+        {
+            string query_str = "xuatkho_searchbydate";
+
+            object[] aParams = new object[2];
+            try
+            {
+                aParams[0] = helper.BuildParameter("TUNGAY", obj.TUNGAY, System.Data.SqlDbType.NVarChar);
+                aParams[1] = helper.BuildParameter("DENNGAY", obj.DENNGAY, System.Data.SqlDbType.NVarChar);
+
+                DataTable kq = helper.ExecuteQueryStoreProcedure(query_str, aParams);
+
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK, kq));
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message));
+            }
+        }
+
         [Route("xuatkho"), HttpPost]
         public IHttpActionResult xuatkho_insert([FromBody] dynamic obj)
         {
