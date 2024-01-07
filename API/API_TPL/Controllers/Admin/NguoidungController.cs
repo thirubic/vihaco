@@ -45,7 +45,7 @@ namespace HUE_CDC.Controllers.Admin
             //obj.password = HashHelper.GetMd5Hash(obj.password);
             try
             {
-                aParams[0] = helper.BuildParameter("prmJsonData", obj, System.Data.SqlDbType.NVarChar);
+                aParams[0] = helper.BuildParameter("prmJsonData", obj.data, System.Data.SqlDbType.NVarChar);
 
                 String kq = helper.ExecuteNonQuery(query_str, aParams);
 
@@ -73,7 +73,7 @@ namespace HUE_CDC.Controllers.Admin
 
             try
             {
-                aParams[0] = helper.BuildParameter("prmJsonData", obj, System.Data.SqlDbType.NVarChar);
+                aParams[0] = helper.BuildParameter("prmJsonData", obj.data, System.Data.SqlDbType.NVarChar);
 
                 String kq = helper.ExecuteNonQuery(query_str, aParams);
 

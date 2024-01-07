@@ -86,7 +86,7 @@ namespace API_TPL.Controllers.Danhmuc
             object[] aParams = new object[1];
             try
             {
-                aParams[0] = helper.BuildParameter("MAKHO", obj.MAKHO, System.Data.SqlDbType.NVarChar);
+                aParams[0] = helper.BuildParameter("IDNHOMVT", obj.IDNHOMVT, System.Data.SqlDbType.Int);
 
                 DataTable kq = helper.ExecuteQueryStoreProcedure(query_str, aParams);
 
