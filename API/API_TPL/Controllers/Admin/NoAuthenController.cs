@@ -13,7 +13,7 @@ namespace API_TPL.Controllers.Admin
     [RoutePrefix("api/nguoidungkut")]
     public class NoAuthenController : ApiController
     {
-        static string connString = System.Configuration.ConfigurationManager.ConnectionStrings["QLCV"].ToString();
+        static string connString = System.Configuration.ConfigurationManager.ConnectionStrings["GSkhoConnection"].ToString();
         DBHelper helper = new DBHelper(connString);
         /// <summary>
         /// Đổi mật khẩu người dùng

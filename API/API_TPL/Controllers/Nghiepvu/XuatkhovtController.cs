@@ -16,23 +16,22 @@ using System.Web.Http;
 
 namespace API_TPL.Controllers.Nghiepvu
 {
-    [RoutePrefix("api/nhapkhovt")]
-    public class NhapkhovtController : ApiController
+    [RoutePrefix("api/xuatkhovt")]
+    public class XuatkhovtController : ApiController
     {
         static String connString = ConfigurationManager.ConnectionStrings["GSkhoConnection"].ToString();
         SQL_DBHELPERs helper = new SQL_DBHELPERs(connString);
 
 
-
         [Route("getbyid"), HttpPost]
-        public IHttpActionResult nhapkho_getbyid([FromBody] dynamic obj)
+        public IHttpActionResult xuatkho_getbyid([FromBody] dynamic obj)
         {
-            string query_str = "nhapkho_getbyid";
+            string query_str = "xuatkho_getbyid";
 
             object[] aParams = new object[1];
             try
             {
-                aParams[0] = helper.BuildParameter("IDNHAPKHO", obj.IDNHAPKHO, System.Data.SqlDbType.NVarChar);
+                aParams[0] = helper.BuildParameter("IDXUATKHO", obj.IDXUATKHO, System.Data.SqlDbType.NVarChar);
 
                 DataTable kq = helper.ExecuteQueryStoreProcedure(query_str, aParams);
 
@@ -44,9 +43,9 @@ namespace API_TPL.Controllers.Nghiepvu
             }
         }
         [Route("searchbyHoadon"), HttpPost]
-        public IHttpActionResult nhapkho_searchbyHoadon([FromBody] dynamic obj)
+        public IHttpActionResult xuatkho_searchbyHoadon([FromBody] dynamic obj)
         {
-            string query_str = "nhapkho_searchbyHoadon";
+            string query_str = "xuatkho_searchbyHoadon";
 
             object[] aParams = new object[1];
             try
@@ -63,9 +62,9 @@ namespace API_TPL.Controllers.Nghiepvu
             }
         }
         [Route("searchbydate"), HttpPost]
-        public IHttpActionResult nhapkho_searchbydate([FromBody] dynamic obj)
+        public IHttpActionResult xuatkho_searchbydate([FromBody] dynamic obj)
         {
-            string query_str = "nhapkho_searchbydate";
+            string query_str = "xuatkho_searchbydate";
 
             object[] aParams = new object[2];
             try
@@ -82,15 +81,16 @@ namespace API_TPL.Controllers.Nghiepvu
                 return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message));
             }
         }
-        [Route("nhapkho"), HttpPost]
-        public IHttpActionResult nhapkho_insert([FromBody] dynamic obj)
+
+        [Route("xuatkho"), HttpPost]
+        public IHttpActionResult xuatkho_insert([FromBody] dynamic obj)
         {
-            string query_str = "nhapkho_insert";
+            string query_str = "xuatkho_insert";
 
             object[] aParams = new object[6];
             try
             {
-                aParams[0] = helper.BuildParameter("NGAYNHAPKHO", obj.NGAYNHAPKHO, System.Data.SqlDbType.NVarChar);
+                aParams[0] = helper.BuildParameter("NGAYXUATKHO", obj.NGAYXUATKHO, System.Data.SqlDbType.NVarChar);
                 aParams[1] = helper.BuildParameter("SOHOADON", obj.SOHOADON, System.Data.SqlDbType.NVarChar);
                 aParams[2] = helper.BuildParameter("MAKHO", obj.MAKHO, System.Data.SqlDbType.NVarChar);
                 aParams[3] = helper.BuildParameter("IDANH", obj.IDANH, System.Data.SqlDbType.NVarChar);
@@ -107,15 +107,15 @@ namespace API_TPL.Controllers.Nghiepvu
             }
         }
         [Route("update"), HttpPost]
-        public IHttpActionResult nhapkho_update([FromBody] dynamic obj)
+        public IHttpActionResult xuatkho_update([FromBody] dynamic obj)
         {
-            string query_str = "nhapkho_update";
+            string query_str = "xuatkho_update";
             //test git
             object[] aParams = new object[7];
             try
             {
-                aParams[0] = helper.BuildParameter("IDNHAPKHO", obj.IDNHAPKHO, System.Data.SqlDbType.NVarChar);
-                aParams[1] = helper.BuildParameter("NGAYNHAPKHO", obj.NGAYNHAPKHO, System.Data.SqlDbType.NVarChar);
+                aParams[0] = helper.BuildParameter("IDXUATKHO", obj.IDXUATKHO, System.Data.SqlDbType.NVarChar);
+                aParams[1] = helper.BuildParameter("NGAYXUATKHO", obj.NGAYXUATKHO, System.Data.SqlDbType.NVarChar);
                 aParams[2] = helper.BuildParameter("SOHOADON", obj.SOHOADON, System.Data.SqlDbType.NVarChar);
                 aParams[3] = helper.BuildParameter("MAKHO", obj.MAKHO, System.Data.SqlDbType.NVarChar);
                 aParams[4] = helper.BuildParameter("IDANH", obj.IDANH, System.Data.SqlDbType.NVarChar);
@@ -132,14 +132,14 @@ namespace API_TPL.Controllers.Nghiepvu
             }
         }
         [Route("xoa"), HttpPost]
-        public IHttpActionResult nhapkho_delete([FromBody] dynamic obj)
+        public IHttpActionResult xuatkho_delete([FromBody] dynamic obj)
         {
-            string query_str = "nhapkho_delete";
+            string query_str = "xuatkho_delete";
 
             object[] aParams = new object[1];
             try
             {
-                aParams[0] = helper.BuildParameter("IDNHAPKHO", obj.IDNHAPKHO, System.Data.SqlDbType.NVarChar);
+                aParams[0] = helper.BuildParameter("IDXUATKHO", obj.IDXUATKHO, System.Data.SqlDbType.NVarChar);
 
                 DataTable kq = helper.ExecuteQueryStoreProcedure(query_str, aParams);
 
@@ -150,45 +150,5 @@ namespace API_TPL.Controllers.Nghiepvu
                 return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message));
             }
         }
-        [Route("getbymahoadon"), HttpPost]
-        public IHttpActionResult nhapkho_searchbyHoadon([FromBody] dynamic obj)
-        {
-            string query_str = "nhapkho_searchbyHoadon";
-
-            object[] aParams = new object[1];
-            try
-            {
-                aParams[0] = helper.BuildParameter("SOHOADON", obj.MAHOADON, System.Data.SqlDbType.NVarChar);
-
-                DataTable kq = helper.ExecuteQueryStoreProcedure(query_str, aParams);
-
-                return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK, kq));
-            }
-            catch (Exception ex)
-            {
-                return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message));
-            }
-        }
-        [Route("getbyngay"), HttpPost]
-        public IHttpActionResult nhapkho_searchbydate([FromBody] dynamic obj)
-        {
-            string query_str = "nhapkho_searchbydate";
-
-            object[] aParams = new object[2];
-            try
-            {
-                aParams[0] = helper.BuildParameter("TUNGAY", obj.TUNGAY, System.Data.SqlDbType.NVarChar);
-                aParams[1] = helper.BuildParameter("DENNGAY", obj.DENNGAY, System.Data.SqlDbType.NVarChar);
-
-                DataTable kq = helper.ExecuteQueryStoreProcedure(query_str, aParams);
-
-                return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK, kq));
-            }
-            catch (Exception ex)
-            {
-                return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message));
-            }
-        }
-
     }
 }

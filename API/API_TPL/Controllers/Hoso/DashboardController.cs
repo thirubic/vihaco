@@ -16,7 +16,7 @@ namespace API_TPL.Controllers.Congviec
     [RoutePrefix("api/dashboard")]
     public class DashboardController : ApiController
     {
-        static string connString = System.Configuration.ConfigurationManager.ConnectionStrings["QLCV"].ToString();
+        static string connString = System.Configuration.ConfigurationManager.ConnectionStrings["GSkhoConnection"].ToString();
         DBHelper helper = new DBHelper(connString);
 
         /// <summary>

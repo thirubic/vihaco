@@ -18,7 +18,7 @@ namespace API_TPL.Controllers.Congviec
     [RoutePrefix("api/thongbao")]
     public class ThongbaoController : ApiController
     {
-        static string connString = System.Configuration.ConfigurationManager.ConnectionStrings["QLCV"].ToString();
+        static string connString = System.Configuration.ConfigurationManager.ConnectionStrings["GSkhoConnection"].ToString();
         DBHelper helper = new DBHelper(connString);
         ApiHelpers api_helper = new ApiHelpers();
         /// <summary>
