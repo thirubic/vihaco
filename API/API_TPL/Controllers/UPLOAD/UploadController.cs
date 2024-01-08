@@ -26,7 +26,7 @@ namespace API_TPL.Controllers.UPLOAD
         SQL_DBHELPERs helper = new SQL_DBHELPERs(connString);
         ApiHelpers api_helper = new ApiHelpers();
         [Route("uploadmulti"), HttpPost]
-        public IHttpActionResult upload_anh([FromBody] dynamic obj)
+        public IHttpActionResult upload_anh(String prmID_DOITUONG, String prmLOAI,String prmNGUOI_CAPNHAT)
         {
 
             string kq_all = "";
@@ -38,20 +38,19 @@ namespace API_TPL.Controllers.UPLOAD
             int kq_suscess = 0;
             string _uploadPath = ConfigurationManager.AppSettings["upload_path"].ToString().Trim();
             string _typePath = ConfigurationManager.AppSettings["image_folder"].ToString().Trim();
-            string workingFolder = HttpContext.Current.Server.MapPath("~" + _uploadPath + _typePath + "/" + obj.LOAI + "/" + obj.ID_DOITUONG + "/");
+            string workingFolder = HttpContext.Current.Server.MapPath("~" + _uploadPath + _typePath + "/" + prmLOAI + "/" + prmID_DOITUONG + "/");
             if (!Directory.Exists(workingFolder))
             {
                 Directory.CreateDirectory(workingFolder); //Create directory if it doesn't exist
             }
 
             string query_str = "UPLOAD_FILE_INSERT";
-            object[] aParams = new object[6];
-            aParams[1] = helper.BuildParameter("prmID_DOITUONG", obj.ID_DOITUONG, System.Data.SqlDbType.NVarChar);
-            aParams[2] = helper.BuildParameter("prmDUONGDAN_FILE", _typePath + "/" + obj.LOAI + "/" + obj.ID_DOITUONG + "/", System.Data.SqlDbType.NVarChar);
-            aParams[3] = helper.BuildParameter("prmLOAI", obj.LOAI, System.Data.SqlDbType.Int);
-            aParams[4] = helper.BuildParameter("prmNGUOICAPNHAT", obj.NGUOI_CAPNHAT, System.Data.SqlDbType.Int);
-
-            HttpResponseMessage result = null;
+            object[] aParams = new object[5];
+            aParams[1] = helper.BuildParameter("prmID_DOITUONG", prmID_DOITUONG, System.Data.SqlDbType.NVarChar);
+            aParams[2] = helper.BuildParameter("prmDUONGDAN_FILE", _uploadPath + "/"+_typePath + "/" + prmLOAI + "/" + prmID_DOITUONG + "/", System.Data.SqlDbType.NVarChar);
+            aParams[3] = helper.BuildParameter("prmLOAI", prmLOAI, System.Data.SqlDbType.NVarChar);
+            aParams[4] = helper.BuildParameter("prmNGUOICAPNHAT", prmNGUOI_CAPNHAT, System.Data.SqlDbType.NVarChar);
+           HttpResponseMessage result = null;
             var httpRequest = HttpContext.Current.Request;
 
             if (httpRequest.Files.Count > 0)
