@@ -150,5 +150,25 @@ namespace API_TPL.Controllers.Nghiepvu
                 return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message));
             }
         }
+        [Route("getduongdan"), HttpPost]
+        public IHttpActionResult upload_xuatduongdan([FromBody] dynamic obj)
+        {
+            string query_str = "upload_xuatduongdan";
+
+            object[] aParams = new object[2];
+            try
+            {
+                aParams[0] = helper.BuildParameter("ID_DOITUONG", obj.ID_DOITUONG, System.Data.SqlDbType.NVarChar);
+                aParams[1] = helper.BuildParameter("LOAI", obj.LOAI, System.Data.SqlDbType.NVarChar);
+
+                DataTable kq = helper.ExecuteQueryStoreProcedure(query_str, aParams);
+
+                return ResponseMessage(Request.CreateResponse(HttpStatusCode.OK, kq));
+            }
+            catch (Exception ex)
+            {
+                return ResponseMessage(Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message));
+            }
+        }
     }
 }
