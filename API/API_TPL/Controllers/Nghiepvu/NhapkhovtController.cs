@@ -48,7 +48,7 @@ namespace API_TPL.Controllers.Nghiepvu
         {
             string query_str = "nhapkho_insert";
 
-            object[] aParams = new object[6];
+            object[] aParams = new object[7];
             try
             {
                 aParams[0] = helper.BuildParameter("NGAYNHAPKHO", obj.NGAYNHAPKHO, System.Data.SqlDbType.NVarChar);
@@ -56,7 +56,8 @@ namespace API_TPL.Controllers.Nghiepvu
                 aParams[2] = helper.BuildParameter("MAKHO", obj.MAKHO, System.Data.SqlDbType.NVarChar);
                 aParams[3] = helper.BuildParameter("IDANH", obj.IDANH, System.Data.SqlDbType.NVarChar);
                 aParams[4] = helper.BuildParameter("GHICHU", obj.GHICHU, System.Data.SqlDbType.NVarChar);
-                aParams[5] = helper.BuildParameter("data", obj.data, System.Data.SqlDbType.NVarChar);
+                aParams[5] = helper.BuildParameter("IDNCC", obj.IDNCC, System.Data.SqlDbType.Int);
+                aParams[6] = helper.BuildParameter("data", obj.data, System.Data.SqlDbType.NVarChar);
 
                 DataTable kq = helper.ExecuteQueryStoreProcedure(query_str, aParams);
 
@@ -72,7 +73,7 @@ namespace API_TPL.Controllers.Nghiepvu
         {
             string query_str = "nhapkho_update";
             //test git
-            object[] aParams = new object[7];
+            object[] aParams = new object[8];
             try
             {
                 aParams[0] = helper.BuildParameter("IDNHAPKHO", obj.IDNHAPKHO, System.Data.SqlDbType.NVarChar);
@@ -81,7 +82,8 @@ namespace API_TPL.Controllers.Nghiepvu
                 aParams[3] = helper.BuildParameter("MAKHO", obj.MAKHO, System.Data.SqlDbType.NVarChar);
                 aParams[4] = helper.BuildParameter("IDANH", obj.IDANH, System.Data.SqlDbType.NVarChar);
                 aParams[5] = helper.BuildParameter("GHICHU", obj.GHICHU, System.Data.SqlDbType.NVarChar);
-                aParams[6] = helper.BuildParameter("data", obj.data, System.Data.SqlDbType.NVarChar);
+                aParams[6] = helper.BuildParameter("IDNCC", obj.IDNCC, System.Data.SqlDbType.Int);
+                aParams[7] = helper.BuildParameter("data", obj.data, System.Data.SqlDbType.NVarChar);
 
                 DataTable kq = helper.ExecuteQueryStoreProcedure(query_str, aParams);
 
